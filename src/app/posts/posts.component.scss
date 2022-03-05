@@ -1,0 +1,19 @@
+.posts {
+  padding: 28px;
+  .post-item {
+    .example-card {
+      max-width: 800px;
+      .example-icon {
+        margin-right: 20px;
+      }
+      .title {
+        font-family: "Dancing Script", cursive;
+        // font-weight: bold;
+        font-size: 28px;
+      }
+      .author {
+        color: #f44336;
+      }
+    }
+  }
+}
