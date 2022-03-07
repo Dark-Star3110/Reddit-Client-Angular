@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../model/Post';
 import { PostService } from '../post.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-post',
@@ -12,7 +13,8 @@ export class UpdatePostComponent implements OnInit {
   constructor(
     private postService: PostService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {}
@@ -28,8 +30,16 @@ export class UpdatePostComponent implements OnInit {
       .updatePost(id, { title, body } as Post)
       .subscribe((response) => {
         if (response.success) {
+          this.toastr.success('Update post successfully !', 'Success', {
+            closeButton: true,
+            timeOut: 5000,
+          });
           this.router.navigate(['/']);
         } else {
+          this.toastr.error('Add post failed !', 'Error!', {
+            closeButton: true,
+            timeOut: 5000,
+          });
           console.log('server error', response);
         }
       });

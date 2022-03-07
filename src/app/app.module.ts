@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { LogComponent } from './log/log.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdatePostComponent } from './update-post/update-post.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { UpdatePostComponent } from './update-post/update-post.component';
     FormsModule,
     MatDialogModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
