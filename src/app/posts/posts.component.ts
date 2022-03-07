@@ -18,8 +18,14 @@ export class PostsComponent implements OnInit {
     this.getPosts();
   }
 
-  openDialog() {
-    this.dialog.open(LogComponent);
+  openDialog(id: number) {
+    // console.log(id);
+    this.dialog.open(LogComponent, {
+      data: {
+        id,
+        getPosts: this.getPosts,
+      },
+    });
   }
 
   getPosts(): void {

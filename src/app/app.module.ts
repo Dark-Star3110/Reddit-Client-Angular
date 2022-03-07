@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { LogComponent } from './log/log.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     PostsComponent,
     AddPostComponent,
     LogComponent,
+    UpdatePostComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { POSTS } from './MockPosts';
+// import { POSTS } from './MockPosts';
 import { Post } from './model/Post';
+import { IResponsePayload } from './payload/ResponsePayload';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +23,46 @@ export class PostService {
     );
   }
 
-  private log(message: string) {
-    console.log(`HeroService: ${message}`);
+  addPost(post: Post): Observable<IResponsePayload> {
+    return this.http
+      .post<IResponsePayload>(
+        this.postsApiUrl + 'add-post',
+        post,
+        this.httpOptions
+      )
+      .pipe(
+        tap((response: IResponsePayload) => this.log(response)),
+        catchError(this.handleError<IResponsePayload>('add post'))
+      );
+  }
+
+  updatePost(id: string, post: Post): Observable<IResponsePayload> {
+    return this.http
+      .put<IResponsePayload>(
+        `${this.postsApiUrl}update-post/?id=${id}`,
+        post,
+        this.httpOptions
+      )
+      .pipe(
+        tap((response: IResponsePayload) => this.log(response)),
+        catchError(this.handleError<IResponsePayload>('update post'))
+      );
+  }
+
+  deletePost(id: number): Observable<IResponsePayload> {
+    return this.http
+      .delete<IResponsePayload>(
+        `${this.postsApiUrl}delete-post/?id=${id}`,
+        this.httpOptions
+      )
+      .pipe(
+        tap((response: IResponsePayload) => this.log(response)),
+        catchError(this.handleError<IResponsePayload>('update post'))
+      );
+  }
+
+  private log(message: any) {
+    console.log(message);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
