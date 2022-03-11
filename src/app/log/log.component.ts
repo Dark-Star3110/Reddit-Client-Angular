@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 
 interface DialogData {
   id: number;
+  success: () => void;
 }
 
 @Component({
@@ -34,7 +35,7 @@ export class LogComponent implements OnInit {
             timeOut: 5000,
           });
           console.log(response);
-          window.location.reload();
+          this.data.success();
         } else {
           this.toastr.error('Add post failed !', 'Error!', {
             closeButton: true,

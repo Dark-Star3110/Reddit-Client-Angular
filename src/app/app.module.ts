@@ -14,6 +14,7 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { LogComponent } from './log/log.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -39,6 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
     FormsModule,
     MatDialogModule,
     HttpClientModule,

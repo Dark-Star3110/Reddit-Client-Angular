@@ -5,6 +5,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 // import { POSTS } from './MockPosts';
 import { Post } from './model/Post';
 import { IResponsePayload } from './payload/ResponsePayload';
+import { IPostRequest } from './payload/PostRequest';
+import { IPostResponse } from './payload/PostResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -16,11 +18,17 @@ export class PostService {
   };
   constructor(private http: HttpClient) {}
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.postsApiUrl + 'all-posts').pipe(
-      tap((_) => this.log('fetched heroes')),
-      catchError(this.handleError<Post[]>('getHeroes', []))
-    );
+  getPosts(postRequest: IPostRequest): Observable<IPostResponse> {
+    return this.http
+      .post<IPostResponse>(
+        this.postsApiUrl + 'all-posts',
+        postRequest,
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) => this.log('fetched heroes')),
+        catchError(this.handleError<IPostResponse>('getHeroes'))
+      );
   }
 
   addPost(post: Post): Observable<IResponsePayload> {

@@ -1,3 +1,8 @@
+<label for="search-box">Post Search</label>
+<div class="search-area">
+  <input [(ngModel)]="key" id="search-box"/>
+  <button class="search-btn"(click)="search()"><mat-icon>search</mat-icon></button>
+</div>
 <div class="posts" *ngFor="let post of posts">
   <div class="post-item">
     <mat-card class="example-card">
@@ -22,3 +27,9 @@
     </mat-card>
   </div>
 </div>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="petzing($event)"
+               aria-label="Select page">
+</mat-paginator>
