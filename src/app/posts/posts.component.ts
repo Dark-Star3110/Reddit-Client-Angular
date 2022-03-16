@@ -54,7 +54,7 @@ export class PostsComponent implements OnInit {
       .getPosts({
         limit: this.limit,
         currentPage: this.currentPage,
-        title: `%${this.key}%`,
+        query: this.key,
       })
       .subscribe((response) => {
         this.length = response.totalCount;

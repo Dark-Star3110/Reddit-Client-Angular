@@ -1,5 +1,5 @@
 export interface IPostRequest {
-  title?: string;
+  query?: string;
   limit: number;
   currentPage: number;
 }
